@@ -32,8 +32,15 @@
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
       const base64Data = signaturePad.toDataURL().split(",")[1];
-      window.parent.postMessage({ id, base64: base64Data }, "*");
+
+      // Mostramos el resultado en pantalla y en consola
+      const result = { id, base64: base64Data };
+      console.log(result);
+      document.body.innerHTML = `<h2>Firma capturada</h2>
+                                 <p>ID: ${id}</p>
+                                 <textarea style="width:90%;height:150px">${base64Data}</textarea>`;
     });
   </script>
 </body>
 </html>
+
